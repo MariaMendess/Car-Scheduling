@@ -1,22 +1,24 @@
-import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository'
 
 interface IResquest {
-    name: string,
-    description: string
+  name: string
+  description: string
 }
 
 class CreateCategoryUseCase {
+  constructor(private categoriesRepository: ICategoriesRepository) {}
 
-    constructor( private categoriesRepository: ICategoriesRepository ) { }
+  async execute({ name, description }: IResquest): Promise<void> {
+    const categoryAlreadyExists = await this.categoriesRepository.findByName(
+      name
+    )
 
-    execute({ name, description }: IResquest): void {
-
-        const categoryAlreadyExists = this.categoriesRepository.findByName(name);
-
-        if (categoryAlreadyExists) { throw new Error("Category Already Exists!") }
-
-        this.categoriesRepository.create({ name, description });
+    if (categoryAlreadyExists) {
+      throw new Error('Category Already Exists!')
     }
+
+    this.categoriesRepository.create({ name, description })
+  }
 }
 
 export { CreateCategoryUseCase }
