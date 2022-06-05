@@ -1,25 +1,25 @@
-import { v4 as uuid } from 'uuid'
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
+import { v4 as uuid } from "uuid";
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
-@Entity('catecories')
+@Entity("categories")
 class Category {
-  @PrimaryColumn()
-  id?: string
+	@PrimaryColumn()
+	id?: string;
 
-  @Column()
-  name: string
+	@Column()
+	name: string;
 
-  @Column()
-  description: string
+	@Column()
+	description: string;
 
-  @CreateDateColumn()
-  createdAt: Date
+	@CreateDateColumn()
+	createdAt: Date;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid()
-    }
-  }
+	constructor() {
+		if (!this.id) {
+			this.id = uuid();
+		}
+	}
 }
 
-export { Category }
+export { Category };
