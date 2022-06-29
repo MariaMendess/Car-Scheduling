@@ -4,7 +4,7 @@ import { CreateCategoryController } from "@modules/cars/useCases/CreateCategory/
 import { ImportCategoryController } from "@modules/cars/useCases/ImportCategory/ImportCategoryController";
 import { ListCategoriesController } from "@modules/cars/useCases/ListCategories/ListCategoriesController";
 
-const categoriesRouters = Router();
+const categoriesRoutes = Router();
 
 const upload = multer({
 	dest: "./tmp",
@@ -14,10 +14,10 @@ const createCategoryController = new CreateCategoryController();
 const importCategoryController = new ImportCategoryController();
 const listCategoriesController = new ListCategoriesController();
 
-categoriesRouters.post("/", createCategoryController.handle);
+categoriesRoutes.post("/", createCategoryController.handle);
 
-categoriesRouters.get("/", listCategoriesController.handle);
+categoriesRoutes.get("/", listCategoriesController.handle);
 
-categoriesRouters.post("/import", upload.single("file"), importCategoryController.handle);
+categoriesRoutes.post("/import", upload.single("file"), importCategoryController.handle);
 
-export { categoriesRouters };
+export { categoriesRoutes };
