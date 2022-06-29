@@ -8,10 +8,12 @@ import cors from "cors";
 import { router } from "./routes";
 import swaggerFile from "../../../swagger.json";
 
-import "@shared/infra/typeorm";
+import createConnection from "@shared/infra/typeorm";
 
 import "../../container";
 import { AppError } from "@shared/errors/AppError";
+
+createConnection();
 
 const app = express();
 
